@@ -4,11 +4,7 @@ import { CardAdicionar } from './components/CardAdicionar';
 
 function App() {
 
-  const [tarefa, setTarefa] = useState("")
-
-  function MinhasTarefas() {
-    setTarefa(tarefa + 1);
-  }
+  const [listaTarefas, setListaTarefas] = useState([]);
 
   return (
     <div className="App">
