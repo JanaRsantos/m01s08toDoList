@@ -1,27 +1,30 @@
 import { useState } from "react";
-import PropTypes from "prop-types";
 
-export const CardAdicionar = ({adicionarTarefa}) =>{
+export const CardAdicionar = ({adicionarTarefa}) => {
 
-  const [textoTarefa, setTextoTarefa] = useState("");
+  const [tarefa, setTarefa] = useState("");
+
+  const handleAdicionar = (evento) => {
+    evento.preventDefault();
+    if (tarefa != "") {
+      adicionarTarefa(tarefa);
+
+      setTarefa("")
+    }
+  }
 
   return(
     <div className="card-add">
         <input
           placeholder="Adicionar tarefa"
           type="text"
-          value={textoTarefa}
-          onChange={(event) => setTextoTarefa(event.target.value)} />
+          value={tarefa}
+          onChange={(event) => setTarefa(event.target.value)} />
 
-      <button onClick={adicionarTarefa}>Adicionar Tarefa</button>
+      <button onClick={handleAdicionar}>Adicionar Tarefa</button>
 
     </div>
   );
 
 };
-
-CardAdicionar.propTypes = {
-  adicionarTarefa: PropTypes.func.isRequired
-};
-
 
