@@ -1,34 +1,33 @@
 import { useState } from "react"
+import { Button, Container, Form, Row, Col } from 'react-bootstrap';
 
 export const ListItem = ({ tarefa, removerTarefa }) => {
 
-  const [finalizado, setFinalizado] = useState(tarefa.finalizado)
+  const [finalizado, setFinalizado] = useState(false);
 
-  const finalizarTarefa = (evento) => {
+  function handleFinalizarTarefa(evento) {
     evento.preventDefault();
-    setFinalizado(!finalizado);
+    setFinalizado(!finalizado)
   }
 
-  const handleRemoverTarefa = (evento) => {
-    evento.preventDefault();
-    
+  function handleRemoverTarefa (evento) {
+    evento.preventDefault();    
     removerTarefa(tarefa);
   }
 
   return(
     <div className="list-items">
-      { finalizado 
-        ? (
+      { finalizado ? (
           <li key={tarefa.id} className={'list-item finalizado'}>
               {tarefa.texto}
-              <button className="list-item-button" onClick={finalizarTarefa}>finalizar</button>
-              <button className="list-item-button" onClick={handleRemoverTarefa}>remover</button>
+              <Button className='m-1' onClick={handleFinalizarTarefa} variant='warning'>Finalizar</Button>
+              <Button className='m-1' onClick={handleRemoverTarefa} variant='danger'>Remover</Button>
           </li>
         ) : (
           <li key={tarefa.id} className={'list-item'}>
               {tarefa.texto}
-              <button className="list-item-button" onClick={finalizarTarefa}>finalizar</button>
-              <button className="list-item-button" onClick={handleRemoverTarefa}>remover</button>
+              <Button className='m-1' onClick={handleFinalizarTarefa} variant='warning'>Finalizar</Button>
+              <Button className='m-1' onClick={handleRemoverTarefa} variant='danger'>Remover</Button>
           </li>
         )
       }
